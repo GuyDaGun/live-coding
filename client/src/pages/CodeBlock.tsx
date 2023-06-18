@@ -1,25 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import {io} from 'socket.io-client';
+import { io } from 'socket.io-client';
 import CryptoJS from 'crypto-js';
 import { CodeBlockType, UserType } from '../utils/types';
 import { RootState } from '../app/store';
 import { useAppSelector } from '../app/hooks';
-
+import smileyIcon from '../assets/smiley-icon.svg';
 
 const serverUrl = window.location.origin;
 const socket = io(`${serverUrl}`);
 
-
 function CodeBlock() {
   const [input, setInput] = useState('');
-  const { user, students, codeblocks, params } = useAppSelector((store: RootState) => store.app);
+  const { user, students, codeblocks, params } = useAppSelector(
+    (store: RootState) => store.app
+  );
   const { studentId, codeblockId } = params;
-  
-  const codeblock: CodeBlockType | undefined = codeblocks.find((cb: CodeBlockType) => cb._id === codeblockId);
-  const student: UserType | undefined = students.find((student: UserType) => student._id === studentId);
-  
+
+  const codeblock: CodeBlockType | undefined = codeblocks.find(
+    (cb: CodeBlockType) => cb._id === codeblockId
+  );
+  const student: UserType | undefined = students.find(
+    (student: UserType) => student._id === studentId
+  );
+
   const roomIdRef = useRef('');
 
   const createRoomId = (studentId: string, codeblockId: string) => {
@@ -31,16 +36,20 @@ function CodeBlock() {
   const updateInput = (newInput: string) => {
     setInput(newInput);
     checkSolution();
-    socket.emit('send-message', { message: newInput, roomId: roomIdRef.current });
+    socket.emit('send-message', {
+      message: newInput,
+      roomId: roomIdRef.current,
+    });
   };
 
-  const solution = 'this is just a test';
   const checkSolution = () => {
-    if (input === solution) {
-      alert('WOW YOU WON!!');
+    if (codeblock?.solution && codeblock.solution !== '') {
+      if (input === codeblock.solution) {
+        const smiley = document.querySelector('.smiley');
+        smiley?.classList.remove('hidden');
+      }
     }
   };
-
 
   useEffect(() => {
     roomIdRef.current = createRoomId(studentId, codeblockId);
@@ -62,6 +71,7 @@ function CodeBlock() {
 
   return (
     <div className='code-block'>
+      <img src={smileyIcon} alt="smiley-face" className='smiley hidden'/>
       <h1>{codeblock?.title}</h1>
       <h4>Student: {student?.username}</h4>
       <div className='code-block-content'>

@@ -301,7 +301,7 @@ ul {
   min-height: 100vh;
 }
 
-.coffee-info {
+/* .coffee-info {
   text-align: center;
   text-transform: capitalize;
   margin-bottom: 1rem;
@@ -322,7 +322,7 @@ ul {
     display: inline-block;
     margin-right: 0.5rem;
   }
-}
+} */
 
 
 /******************************************************/
@@ -405,4 +405,13 @@ textarea {
 
 .link {
   color: var(--primary-400);
+}
+
+.smiley {
+  position: fixed;
+  height: 800px;
+}
+
+.hidden {
+  content-visibility: hidden;
 }
