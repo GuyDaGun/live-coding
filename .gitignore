@@ -1,0 +1,5 @@
+.DS_STORE
+node_modules
+*.env
+server/populateCodeBlocks.ts
+server/populateUsers.ts
