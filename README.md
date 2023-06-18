@@ -12,7 +12,7 @@ Create a .env file containing the following fields:
 - PORT
 - MONGO_URL
 - JWT_SECRET
-- JWT_LIFETIME
+- JWT_LIFETIME  
 Install the dependencies by running the command 'npm run setup-production'.
 Run the command 'node ./dist/server' to start the application.
 Navigate to localhost:5000 in your browser and enjoy.
