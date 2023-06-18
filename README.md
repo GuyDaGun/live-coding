@@ -8,6 +8,11 @@ To install Live-Coding, follow these steps:
 
 Clone this repository to your local machine.
 Navigate to the server directory of the project.
+Create a .env file containing the following fields:
+- PORT
+- MONGO_URL
+- JWT_SECRET
+- JWT_LIFETIME
 Install the dependencies by running the command 'npm run setup-production'.
 Run the command 'node ./dist/server' to start the application.
 Navigate to localhost:5000 in your browser and enjoy.
