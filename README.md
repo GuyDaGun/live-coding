@@ -16,7 +16,7 @@ Navigate to localhost:5000 in your browser and enjoy.
 
 this project is up and running using render.com and can be accessed in the following link:  
 
-https://online-coding.onrender.com
+https://live-coding.onrender.com
 
 The list of usernames & passwords can be found in ./server/MOCK_DATA_USERS.json
 
